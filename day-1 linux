@@ -1,0 +1,37 @@
+root@paramveer:~# history
+    1  ls
+    2  cd /
+    3  ls
+    4  hostname
+    5  hostname -i
+    6  curl ifconfig.me
+    7  uname
+    8  uname -a
+    9  ls
+   10  pwd
+   11  cd ~
+   12  la
+   13  ls
+   14  mkdir ankit
+   15  ls
+   16  touch file
+   17  ls
+   18  cat file 
+   19  vi file
+   20  cat file 
+   21  history
+   22  man ls
+   23  ls
+   24  whoami
+   25  top
+   26  ps
+   27  ps -a
+   28  ps -auf
+   29  free
+   30  free -m
+   31  free -g
+   32  free -h
+   33  df -h
+   34  ifconfig
+   35  cat /etc/os-release
+   36  history
