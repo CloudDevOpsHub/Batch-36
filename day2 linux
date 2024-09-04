@@ -1,0 +1,44 @@
+root@ankit:/tmp# history
+    1  ssh-keygen
+    2  cd /root/.ssh/
+    3  ls
+    4  cat id_rsa.pub
+    5  cat id_rsa
+    6  cd /tmp/
+    7  ls
+    8  touch abc
+    9  ls
+   10  rm abc
+   11  wget https://www.free-css.com/assets/files/free-css-templates/download/page296/healet.zip
+   12  ls
+   13  vi big
+   14  cat big 
+   15  more big 
+   16  head -n 5 big
+   17  tail -n 5 big
+   18  tail -n 10 big
+   19  uname -a
+   20  top
+   21  uptime
+   22  date
+   23  free -h
+   24  last
+   25  ps
+   26  top
+   27  df -h
+   28  du
+   29  du .
+   30  ping google.com
+   31  ping 35.223.97.120
+   32  who
+   33  locate *.txt
+   34  apt install mlocate
+   35  locate *.txt
+   36  mkdir myfiles ; touch myfiles/{a.txt,b.txt,c.txt}
+   37  ls
+   38  ls myfiles
+   39  tar -cvf allfiles.tar myfiles
+   40  ls
+   41  tar -xvf allfiles.tar 
+   42  ls
+   43  history
