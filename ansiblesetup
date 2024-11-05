@@ -1,0 +1,239 @@
+Part 1 Create 3 ubuntu  Docker container 
+
+
+Step 1 create  3 Ubuntu  container 
+
+1st - ansible_master 
+2nd target 1
+3rd target 2
+
+Step 2 create containers  we need Docker 
+
+   apt-get update && apt install docker.io -y
+   
+   done 
+   Docker version 24.0.7
+   
+   
+
+docker run -itd --name ansible_master ubuntu /bin/bash
+docker run -itd --name target1 ubuntu /bin/bash
+docker run -itd --name target2 ubuntu /bin/bash
+
+
+
+Step 3 check the process and name for verification 
+docker ps
+
+root@prashant:~# docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS          PORTS     NAMES
+b2a8ab059313   ubuntu    "/bin/bash"   5 seconds ago    Up 4 seconds              target2
+dbc772c61e93   ubuntu    "/bin/bash"   29 seconds ago   Up 28 seconds             target1
+797b18753713   ubuntu    "/bin/bash"   44 seconds ago   Up 42 seconds             ansible_master
+
+done 
+
+
+
+Part 2 install Ansible and requies tools in ansible_master 
+Step 4 go to ansible_master container  update the ubuntu and install some dependencies and ansible
+
+docker exec -it ansible_master bash
+apt update
+
+python
+ping
+ssh
+
+
+Kol
+1947 Delhi 
+
+apt install python-is-python3 vim iputils-ping openssh-client -y
+                           Geographical area 6 city 44
+apt install software-properties-common
+add-apt-repository --yes --update ppa:ansible/ansible
+apt install ansible
+
+ansible --version
+
+ansible [core 2.17.5]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.12.3 (main, Sep 11 2024, 14:17:37) [GCC 13.2.0] (/usr/bin/python3)
+  jinja version = 3.1.2
+  libyaml = True
+  
+  -----------------
+  
+  
+Part 3 Setup n number of target machines (2)/ container(2)Login to Target and setup target 1 
+
+Step 5  Login to target 1 
+docker exec -it target1 bash
+
+Step 6 Update and install SSH and required dependencies 
+apt update
+apt install vim python-is-python3 iputils-ping openssh-client -y
+apt-get install openssh-client openssh-server -y
+Geographical area 6 city 44
+
+Step 7 edit sshd_config to allow SSH and root login as ansible requires
+
+cd /etc/ssh 
+vi sshd_config
+uncomment the parameter and modify the permission to yes PermitRootLogin yes and PasswordAuthentication yes
+
+Step 8 Start the service ssh if its not running
+service ssh status
+service ssh start 
+service ssh status  
+
+
+done ---------  
+
+
+Step 9 change the root password to admin 
+passwd root
+Admin
+Admin
+
+done 
+
+
+Part 4 Perform the same all steps with target 2 and so on
+Step 10 
+
+
+Part 5  Find the IP’s of all targets container  for adding in ansible host file 
+Come out to docker node and run the command 
+
+Step 11
+sudo docker inspect target1
+sudo docker inspect target2 
+
+
+You will find the IPAddress like 172.17.0.3  
+
+----done 
+
+
+Part 6 setup ansible_master for ssh connectivity  and adding IP’s in hostfile
+
+
+Step 12  go to ansible_master
+
+docker exec -it ansible_master bash
+
+Step 13 edit ansible host file and provide the target IP’s
+cd /etc/ansible/
+ls
+Go to hosts file   
+provide the IP of the target machines   like 172.17.0.3
+
+Step 14 verify as you are able to ping target machine from ansible_master
+
+Ping  <Target machine IP>
+
+go back to master machine
+
+Step 15 
+generate the ssh key from the ssh-keygen command 
+
+ssh-keygen
+provide 3 times enter    (1 location verification + 2 time for passwd )
+
+
+-----------------
+
+Part 7 copy the generated ssh keys from ansible_master to target machine and check the connectivity
+
+Step 15 Copy the generated key from ansible_master to remote target 
+
+ssh-copy-id root@172.17.0.3
+yes
+
+Number of key(s) added: 1
+
+done 
+
+----------------
+
+Step 16   You should be able to connect via target machine from ansible_master 
+ssh root@172.17.0.3
+
+verify nginx is there or not 
+
+service nginx status
+
+
+
+
+  
+playbook 
+
+---
+- hosts: all
+  tasks:
+    - name: install nginx for batch-36
+      apt: name=nginx state=latest
+
+
+ansible-playbook unstallnginx.yaml
+
+-----
+
+ansible-playbook -i  aysushost installnginx.yaml
+
+vi unstallnginx.yaml
+
+
+if i will add the 172.17.0.4  host file 
+
+ansible-playbook installnginx.yaml
+
+
+ansible-playbook ansibleplaybookwithroles/openjdk8.yml
+
+---
+- hosts: localhost
+  roles:
+    - openjdk8
+	- maven
+
+
+--------
+
+ansible-galaxy init subhashrole
+tree subhashrole
+apt install tree
+
+------------
+
+---
+- name: Install Nginx on a remote server
+  hosts: all
+  become: yes  # Ensures the playbook is run with sudo privileges
+  tasks:
+
+    - name: Update the package list
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure Nginx is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
