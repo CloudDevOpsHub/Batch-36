@@ -1,0 +1,261 @@
+#! bin/bash   
+ls
+whoami
+pwd
+touch rutal
+date
+
+./   or sh    or bash  to execute 
+
+
+file.sh
+
+
+cron 
+
+-----------------
+
+#!/bin/bash  
+echo "This is my first shell script"  
+ls
+echo "I am  running ls command"  
+SOMEVAR='this is batch36'  
+echo "$SOMEVAR"
+
+
+------------
+
+whoami
+
+Example 2
+#!/bin/bash 
+echo "Hello batch-36"
+echo "My name is $(whoami)"
+echo "Nice today we will learn shellscript"
+
+
+---------
+
+5 server monitring commands 
+
+#!/bin/bash 
+echo "this is my monitoring stript"
+echo "this mashie name"
+hostname
+echo "this machine shaterd"
+uptime
+echo "this machine disc usage"
+df -h
+echo "this machine FREE memory usage"
+free -h
+vmstat
+ps 
+uptime
+w
+
+----------------
+
+#!/bin/bash
+
+# Add two numeric value
+((sum=10-5))
+
+#Print the result
+echo $sum
+
+
+-----------------
+
+#!/bin/bash
+echo "Enter Your name"
+read name
+echo "Welcome $name to Linux Learning session in batch-36"
+
+
+--------------------
+
+#!/bin/bash
+# clear previous content
+> info 
+
+echo "Current time and date:" >> info
+date >> info
+
+echo -e "\nLogged-in Users:" >> info 
+who >> info 
+
+echo -e "\nRunning Processes:" >> info 
+ps -ef >> info
+
+===============
+
+#!/bin/bash
+# Define the output file name
+output_file="info"
+
+# Redirect all outputs to the 'info' file
+{
+  # Get current date and time
+  echo "Current Date and Time:"
+  date
+
+  # List of logged-in users
+  echo -e "\nLogged-in Users:"
+  who
+
+  # List of running processes
+  echo -e "\nRunning Processes:"
+  ps aux
+} > "$output_file"
+
+# Confirmation message
+echo "Output has been saved to $output_file."
+
+Prashant SHRIVASTAVA  to  Everyone 9:05
+#!/bin/bash
+
+{
+  # 1. Show date and time
+  echo "### Date and Time ###"
+  date
+  
+
+  # 2. List logged-in users
+  echo "### Logged-in Users ###"
+  who
+
+  # 3. Show running processes
+  echo "### Running Processes ###"
+  ps aux
+} > info
+
+echo "System information saved to 'info' file."
+Yes
+
+Yuvraj Patil 9:05
+#!/bin/bash
+# clear previous content
+> info 
+
+echo "Current time and date:" >> info
+date >> info
+
+echo -e "\nLogged-in Users:" >> info 
+who >> info 
+
+echo -e "\nRunning Processes:" >> info 
+ps -ef >> info 
+
+echo "Information saved to info file."
+
+-----------------
+
+Solution 
+
+#!/bin/bash 
+echo "Current Date & time is $(date)" > info
+echo "Current user logged in is $(whoami)" >> info
+echo "Current running process is $(ps)" >> info
+
+
+
+-------------------------
+
+
+Shell Script To Display The Running Process Running On The System
+Every 30 Seconds For 3 Times Only
+
+
+
+
+for i in {1..3}   for loop 3 time only  
+sleep 30
+ps
+
+
+-----------
+
+
+#!/bin/bash
+# Write a shell script to display the process running on the system for every
+# 30 seconds, but only for 3 times.
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# 
+# for loop 3 times
+for r in 1 2 3
+do
+	#see every process on the system
+	echo "**************************** x^x^x ****************************"
+	ps
+	echo "**************************** x^x^x ****************************"
+	#sleep for 30 seconds
+	sleep 30
+        # clean
+done
+
+
+
+Variables
+NAME="John"
+echo $NAME
+echo "$NAME"
+echo "${NAME}!"
+
+------
+
+String quotes
+NAME="Hi John"
+echo "Hi $NAME"       output      #=> Hi Hi John
+echo ‘Hi $NAME'        output     #=> Hi $NAME
+
+
+----------  varable sum=10-5 vs function 
+
+
+
+Conditional execution
+git commit && git push                  
+git commit || echo
+
+
+
+Functions
+
+
+get_name() {
+echo "John"
+}
+echo "You are $(get_name)"
+
+
+----------------------
+
+Abhishek Jinde 9:12
+#!/bin/bash
+
+# Loop to display running processes 3 times
+for i in {1..10}
+for r in 1 2 3 
+
+
+
+hostnamectl
+df -h
+free
+uptime
+who
+ps
+
+
+
+echo  "\e[31;43m***** HOSTNAME INFORMATION *****\e[0m"
+
+
+----------------
+
+nameservers=$(cat /etc/resolv.conf | sed '1 d' | awk '{print $2}')
+
+nameservers=cat /etc/resolv.conf 
+| sed '1 d' 
+| awk '{print $2}'
